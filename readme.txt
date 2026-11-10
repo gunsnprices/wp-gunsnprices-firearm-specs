@@ -12,7 +12,7 @@ Reads caliber, model, magazine capacity, barrel length and rounds per box from g
 
 == Description ==
 
-Gun and ammo product titles already contain the specs, just not in a form a store can filter or compare: `Glock 19 Gen 5 9mm 4.02" 15rd Pistol`, `G19 GEN5 9MM 15RD FS`, `Federal American Eagle 9mm 115gr FMJ 50 Rounds`. This plugin reads them and saves the specs on your products.
+Gun and ammo product titles already contain the specs, just not in a form a store can filter or compare: `Glock 19 Gen 5 9mm 4.02" 15rd Pistol`, `GLOCK G19 GEN5 9MM 15RD FS`, `Federal American Eagle 9mm 115gr FMJ 50 Rounds`. This plugin reads them and saves the specs on your products.
 
 From a title (and the SKU or part number, if you have one) it reads:
 
