@@ -24,8 +24,9 @@ find "$BUILD/$SLUG" -name '*.php' -print0 | xargs -0 -n1 php -l > /dev/null
 V_MAIN=$(sed -n 's/^ \* Version: *//p' "$BUILD/$SLUG/$SLUG.php")
 V_CONST=$(sed -n "s/^define( 'GNPFS_VERSION', '\(.*\)' );/\1/p" "$BUILD/$SLUG/$SLUG.php")
 V_README=$(sed -n 's/^Stable tag: *//p' "$BUILD/$SLUG/readme.txt")
-if [ "$V_MAIN" != "$V_CONST" ] || [ "$V_MAIN" != "$V_README" ]; then
-	echo "Version mismatch: header $V_MAIN, constant $V_CONST, readme $V_README" >&2
+V_BLOCK=$(sed -n 's/^.*"version": "\(.*\)",$/\1/p' "$BUILD/$SLUG/blocks/cost-per-round/block.json")
+if [ "$V_MAIN" != "$V_CONST" ] || [ "$V_MAIN" != "$V_README" ] || [ "$V_MAIN" != "$V_BLOCK" ]; then
+	echo "Version mismatch: header $V_MAIN, constant $V_CONST, readme $V_README, block.json $V_BLOCK" >&2
 	exit 1
 fi
 
