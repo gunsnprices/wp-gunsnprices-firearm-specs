@@ -1,7 +1,8 @@
 <?php
 /*
  * Vendored copy of gunsnprices/gunsnprices (MIT License, see ../LICENSE) for the GunsNPrices Firearm Specs plugin.
- * Modified only by tools/vendor-parser.php: the namespace GunsNPrices was renamed to GunsNPricesFirearmSpecs\Vendor\GunsNPrices.
+ * Modified by tools/vendor-parser.php: the namespace GunsNPrices was renamed to GunsNPricesFirearmSpecs\Vendor\GunsNPrices,
+ * and exception messages are passed through esc_html().
  */
 namespace GunsNPricesFirearmSpecs\Vendor\GunsNPrices;
 

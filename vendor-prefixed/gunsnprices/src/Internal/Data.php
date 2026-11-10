@@ -1,7 +1,8 @@
 <?php
 /*
  * Vendored copy of gunsnprices/gunsnprices (MIT License, see ../LICENSE) for the GunsNPrices Firearm Specs plugin.
- * Modified only by tools/vendor-parser.php: the namespace GunsNPrices was renamed to GunsNPricesFirearmSpecs\Vendor\GunsNPrices.
+ * Modified by tools/vendor-parser.php: the namespace GunsNPrices was renamed to GunsNPricesFirearmSpecs\Vendor\GunsNPrices,
+ * and exception messages are passed through esc_html().
  */
 namespace GunsNPricesFirearmSpecs\Vendor\GunsNPrices\Internal;
 
@@ -25,7 +26,7 @@ final class Data
             $json = @file_get_contents($path);
             $data = $json === false ? null : json_decode($json, true);
             if (!is_array($data)) {
-                throw new \RuntimeException('GunsNPrices: cannot read ' . $path);
+                throw new \RuntimeException( \esc_html( 'GunsNPrices: cannot read ' . $path ) );
             }
             self::$cache[$name] = $data;
         }

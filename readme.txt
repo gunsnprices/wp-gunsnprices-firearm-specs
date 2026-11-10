@@ -95,7 +95,7 @@ If you turn it on, a "Specs: GunsNPrices" row with a link to gunsnprices.com is 
 
 == Third-party code and data ==
 
-The plugin bundles the gunsnprices PHP library 0.1.0 (https://github.com/gunsnprices/gunsnprices-php, MIT License) in `lib/gunsnprices/`, with its namespace renamed so it cannot clash with other plugins. Its model dictionaries and caliber list (`lib/gunsnprices/data/models.json` and `calibers.json`) are © GunsNPrices (https://gunsnprices.com) under the Creative Commons Attribution 4.0 license, which is compatible with the GPL. The source of the block's editor script is the shipped `blocks/cost-per-round/index.js`; there is no build step.
+The plugin bundles the gunsnprices PHP library 0.1.0 (https://github.com/gunsnprices/gunsnprices-php, MIT License) in `vendor-prefixed/gunsnprices/`, with its namespace renamed so it cannot clash with other plugins. Its model dictionaries and caliber list (`vendor-prefixed/gunsnprices/data/models.json` and `calibers.json`) are © GunsNPrices (https://gunsnprices.com) under the Creative Commons Attribution 4.0 license, which is compatible with the GPL. The source of the block's editor script is the shipped `blocks/cost-per-round/index.js`; there is no build step.
 
 == Changelog ==
 

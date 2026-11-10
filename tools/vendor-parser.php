@@ -1,6 +1,6 @@
 <?php
 /**
- * Copies the gunsnprices PHP parser into lib/gunsnprices/ under a plugin-specific namespace.
+ * Copies the gunsnprices PHP parser into vendor-prefixed/gunsnprices/ under a plugin-specific namespace.
  *
  * Usage: php tools/vendor-parser.php [path/to/gunsnprices-php]
  *
@@ -10,6 +10,9 @@
  * rewriting those lines and the result is checked with the PHP tokenizer: any name that still starts with the
  * original namespace stops the script.
  *
+ * Exception messages are wrapped in esc_html(): the copy only ever runs inside WordPress, and WordPress coding standards
+ * treat exception messages as output.
+ *
  * Dev-only file, not shipped in the plugin zip.
  */
 
@@ -18,7 +21,7 @@ if ( PHP_SAPI !== 'cli' ) {
 }
 
 $src    = isset( $argv[1] ) ? rtrim( $argv[1], '/' ) : dirname( __DIR__, 2 ) . '/gunsnprices-php';
-$dest   = dirname( __DIR__ ) . '/lib/gunsnprices';
+$dest   = dirname( __DIR__ ) . '/vendor-prefixed/gunsnprices';
 $from   = 'GunsNPrices';
 $prefix = 'GunsNPricesFirearmSpecs\\Vendor\\GunsNPrices';
 
@@ -49,7 +52,8 @@ mkdir( "$dest/data", 0755, true );
 $php_files = array_merge( array( 'src/Parser.php' ), array_map( fn( $p ) => 'src/Internal/' . basename( $p ), glob( "$src/src/Internal/*.php" ) ) );
 sort( $php_files );
 
-$version = '';
+$version    = '';
+$exceptions = 0;
 foreach ( $php_files as $rel ) {
 	$code = file_get_contents( "$src/$rel" );
 	$out  = preg_replace(
@@ -63,6 +67,13 @@ foreach ( $php_files as $rel ) {
 		),
 		$code
 	);
+	$out = preg_replace( '/throw new \\\\(RuntimeException|LogicException)\((.+)\);(\s*)$/m', 'throw new \\\\$1( \\esc_html( $2 ) );$3', $out, -1, $wrapped );
+	$throws = preg_match_all( '/\bthrow new /', $out );
+	if ( $wrapped !== $throws ) {
+		fwrite( STDERR, "Could not wrap every exception message in $rel ($wrapped of $throws)\n" );
+		exit( 1 );
+	}
+	$exceptions += $wrapped;
 	// Check every namespaced name with the tokenizer.
 	foreach ( token_get_all( $out ) as $t ) {
 		if ( is_array( $t ) && in_array( $t[0], array( T_NAME_QUALIFIED, T_NAME_FULLY_QUALIFIED ), true ) ) {
@@ -77,7 +88,8 @@ foreach ( $php_files as $rel ) {
 		$version = $m[1];
 	}
 	$header = "<?php\n/*\n * Vendored copy of gunsnprices/gunsnprices (MIT License, see ../LICENSE) for the GunsNPrices Firearm Specs plugin.\n"
-		. " * Modified only by tools/vendor-parser.php: the namespace GunsNPrices was renamed to $prefix.\n */\n";
+		. " * Modified by tools/vendor-parser.php: the namespace GunsNPrices was renamed to $prefix,\n"
+		. " * and exception messages are passed through esc_html().\n */\n";
 	$out    = preg_replace( '/^<\?php\s*\n/', $header, $out, 1 );
 	file_put_contents( "$dest/$rel", $out );
 }
@@ -97,10 +109,11 @@ file_put_contents(
 	"$dest/README.txt",
 	"gunsnprices $version, PHP title parser for firearms and ammunition.\n"
 	. "Source: https://github.com/gunsnprices/gunsnprices-php (Composer: gunsnprices/gunsnprices)\n\n"
-	. "Copied by tools/vendor-parser.php. The only change is the namespace: GunsNPrices\\... became\n"
-	. "$prefix\\... so this copy cannot clash with another plugin that ships the same library.\n\n"
+	. "Copied by tools/vendor-parser.php with two changes: the namespace GunsNPrices\\... became\n"
+	. "$prefix\\... so this copy cannot clash with another plugin that ships the same library,\n"
+	. "and exception messages are passed through esc_html().\n\n"
 	. "Code: MIT License (LICENSE). Data files data/models.json and data/calibers.json: CC BY 4.0,\n"
 	. "GunsNPrices (https://gunsnprices.com), unchanged (LICENSE-DATA).\n"
 );
 
-echo "Vendored gunsnprices $version into lib/gunsnprices (" . count( $php_files ) . " PHP files)\n";
+echo "Vendored gunsnprices $version into vendor-prefixed/gunsnprices (" . count( $php_files ) . " PHP files, $exceptions exception messages escaped)\n";

@@ -1,0 +1,16 @@
+# Files and folders kept out of the plugin zip (read by tools/build-zip.sh).
+.git
+.gitignore
+.gitattributes
+.distignore
+.wordpress-org
+.phpcs-cache
+.DS_Store
+tools
+dist
+build
+vendor
+composer.json
+composer.lock
+phpcs.xml.dist
+SUBMIT_wordpress_org.md

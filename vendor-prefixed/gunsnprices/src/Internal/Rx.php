@@ -1,7 +1,8 @@
 <?php
 /*
  * Vendored copy of gunsnprices/gunsnprices (MIT License, see ../LICENSE) for the GunsNPrices Firearm Specs plugin.
- * Modified only by tools/vendor-parser.php: the namespace GunsNPrices was renamed to GunsNPricesFirearmSpecs\Vendor\GunsNPrices.
+ * Modified by tools/vendor-parser.php: the namespace GunsNPrices was renamed to GunsNPricesFirearmSpecs\Vendor\GunsNPrices,
+ * and exception messages are passed through esc_html().
  */
 namespace GunsNPricesFirearmSpecs\Vendor\GunsNPrices\Internal;
 
@@ -172,7 +173,7 @@ final class Rx
     private static function fail(string $pattern)
     {
         if (self::$strict) {
-            throw new \RuntimeException('GunsNPrices: PCRE error ' . preg_last_error() . ' in ' . substr($pattern, 0, 200));
+            throw new \RuntimeException( \esc_html( 'GunsNPrices: PCRE error ' . preg_last_error() . ' in ' . substr($pattern, 0, 200) ) );
         }
     }
 
@@ -209,7 +210,7 @@ final class Rx
                     continue;
                 }
                 if ($e === '`' || $e === "'") {
-                    throw new \LogicException('GunsNPrices: unsupported replacement ' . $to);
+                    throw new \LogicException( \esc_html( 'GunsNPrices: unsupported replacement ' . $to ) );
                 }
             }
             if ($c === '\\') {
@@ -290,7 +291,7 @@ final class Rx
                     if ($spaces && ($e === 's' || $e === 'S')) {
                         $out .= $e === 's' ? ' ' : ($class ? '' : '[^ ]');
                         if ($class && $e === 'S') {
-                            throw new \LogicException('GunsNPrices: \\S inside a character class is not supported');
+                            throw new \LogicException( \esc_html( 'GunsNPrices: \\S inside a character class is not supported' ) );
                         }
                     } else {
                         $out .= '\\' . $e;
@@ -311,7 +312,7 @@ final class Rx
                     case 'W':
                     case 'S':
                         if ($class) {
-                            throw new \LogicException('GunsNPrices: \\' . $e . ' inside a character class is not supported');
+                            throw new \LogicException( \esc_html( 'GunsNPrices: \\' . $e . ' inside a character class is not supported' ) );
                         }
                         $out .= $e === 'D' ? '[^0-9]' : ($e === 'W' ? sprintf($ascii, $nw) : '[^' . $ws . ']');
                         break;
@@ -356,14 +357,14 @@ final class Rx
                         break;
                     case '0':
                         if ($i < $n && self::digits($s[$i])) {
-                            throw new \LogicException('GunsNPrices: octal escapes are not supported');
+                            throw new \LogicException( \esc_html( 'GunsNPrices: octal escapes are not supported' ) );
                         }
                         $out .= '\x{0}';
                         break;
                     default:
                         if (self::digits($e)) {
                             if ($class) {
-                                throw new \LogicException('GunsNPrices: octal escapes are not supported');
+                                throw new \LogicException( \esc_html( 'GunsNPrices: octal escapes are not supported' ) );
                             }
                             $num = $e;
                             while ($i < $n && self::digits($s[$i])) {

@@ -3,7 +3,7 @@
  * Class autoloader for the plugin and its bundled copy of the gunsnprices parser.
  *
  * GunsNPricesFirearmSpecs\Some_Class           => includes/class-some-class.php
- * GunsNPricesFirearmSpecs\Vendor\GunsNPrices\X => lib/gunsnprices/src/X.php
+ * GunsNPricesFirearmSpecs\Vendor\GunsNPrices\X => vendor-prefixed/gunsnprices/src/X.php
  *
  * @package GunsNPricesFirearmSpecs
  */
@@ -19,7 +19,7 @@ spl_autoload_register(
 
 		if ( 0 === strpos( $class_name, $vendor ) ) {
 			$relative = str_replace( '\\', '/', substr( $class_name, strlen( $vendor ) ) );
-			$file     = GNPFS_DIR . 'lib/gunsnprices/src/' . $relative . '.php';
+			$file     = GNPFS_DIR . 'vendor-prefixed/gunsnprices/src/' . $relative . '.php';
 		} elseif ( 0 === strpos( $class_name, $own ) ) {
 			$relative = substr( $class_name, strlen( $own ) );
 			if ( false !== strpos( $relative, '\\' ) ) {
