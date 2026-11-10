@@ -1,6 +1,6 @@
 <?php
 /**
- * [cost_per_round] shortcode, also used to render the Cost per round block.
+ * [gnpfs_cost_per_round] shortcode, also used to render the Cost per round block.
  *
  * @package GunsNPricesFirearmSpecs
  */
@@ -19,13 +19,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 final class Shortcode {
 
 	/**
-	 * Registers [gnpfs_cost_per_round] and, unless another plugin owns the name, [cost_per_round].
+	 * Registers [gnpfs_cost_per_round].
 	 */
 	public static function init() {
 		add_shortcode( 'gnpfs_cost_per_round', array( __CLASS__, 'shortcode' ) );
-		if ( ! shortcode_exists( 'cost_per_round' ) ) {
-			add_shortcode( 'cost_per_round', array( __CLASS__, 'shortcode' ) );
-		}
 	}
 
 	/**
@@ -45,7 +42,7 @@ final class Shortcode {
 				'currency' => '$',
 			),
 			$atts,
-			'cost_per_round'
+			'gnpfs_cost_per_round'
 		);
 		return self::render( $atts );
 	}

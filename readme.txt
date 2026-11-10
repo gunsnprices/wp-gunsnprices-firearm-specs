@@ -34,7 +34,7 @@ From a title (and the SKU or part number, if you have one) it reads:
 
 = Without WooCommerce =
 
-* **Cost per round block** and the `[cost_per_round]` shortcode for reviews, blogs and deal posts: `[cost_per_round price="21.99" rounds="50"]` shows "$0.44 per round". The round count can also be read from a title: `[cost_per_round price="21.99" title="Federal 9mm 115gr FMJ 50 Rounds"]`.
+* **Cost per round block** and the `[gnpfs_cost_per_round]` shortcode for reviews, blogs and deal posts: `[gnpfs_cost_per_round price="21.99" rounds="50"]` shows "$0.44 per round". The round count can also be read from a title: `[gnpfs_cost_per_round price="21.99" title="Federal 9mm 115gr FMJ 50 Rounds"]`.
 * **Tools → Firearm Specs**: paste up to 500 product titles or caliber names and get a table of specs, plus a tab-separated copy for spreadsheets. Handy for cleaning up a product feed or a price list before an import.
 
 = Private by design =
@@ -57,7 +57,7 @@ The plugin bundles the gunsnprices PHP library 0.1.0 (https://github.com/gunsnpr
 
 1. Install the plugin from Plugins → Add New, or upload the zip, and activate it.
 2. With WooCommerce: open Settings → Firearm Specs, choose where to show the cost per round and whether to create product attributes, then click "Fill specs now" to fill your existing products.
-3. Without WooCommerce: add the Cost per round block or the `[cost_per_round]` shortcode to a post, or use Tools → Firearm Specs.
+3. Without WooCommerce: add the Cost per round block or the `[gnpfs_cost_per_round]` shortcode to a post, or use Tools → Firearm Specs.
 
 == Frequently Asked Questions ==
 

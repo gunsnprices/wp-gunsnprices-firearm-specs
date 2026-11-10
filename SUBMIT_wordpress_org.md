@@ -56,8 +56,8 @@ Points a reviewer may raise, and the answers:
 - *Data licence?* `models.json` and `calibers.json` are CC BY 4.0, which the FSF lists as compatible with all
   versions of the GPL (https://www.gnu.org/licenses/license-list.html#ccby). We own the data, so if a reviewer still
   objects we can additionally license the bundled copy under GPLv2-or-later (owner's decision).
-- *Generic shortcode name?* `[cost_per_round]` is registered only if no other plugin has taken it; the prefixed
-  `[gnpfs_cost_per_round]` is always there. If asked, drop the unprefixed one.
+- *Generic shortcode name?* Only the prefixed `[gnpfs_cost_per_round]` is registered (the unprefixed
+  `[cost_per_round]` was dropped before submission).
 - *Links to gunsnprices.com?* Front end: only the opt-in credit row, off by default. Admin: the CC BY attribution
   line on the settings and tools pages.
 - *External requests / tracking?* None.
