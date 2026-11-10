@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       GunsNPrices Firearm Specs
- * Plugin URI:        https://gunsnprices.com
+ * Plugin URI:        https://github.com/gunsnprices/wp-gunsnprices-firearm-specs
  * Description:       Reads caliber, brand and model, magazine capacity, barrel length and rounds per box from gun and ammo product titles. Shows cost per round for ammo in WooCommerce.
  * Version:           0.1.0
  * Requires at least: 6.4
