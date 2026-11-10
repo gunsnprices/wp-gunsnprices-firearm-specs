@@ -1,0 +1,28 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "gunsnprices/cost-per-round",
+	"version": "0.1.0",
+	"title": "Cost per round",
+	"category": "widgets",
+	"icon": "calculator",
+	"description": "Price of one round of ammunition: box price divided by rounds per box.",
+	"keywords": [ "ammo", "ammunition", "price", "rounds", "cpr" ],
+	"textdomain": "gunsnprices-firearm-specs",
+	"attributes": {
+		"price": { "type": "string", "default": "" },
+		"rounds": { "type": "string", "default": "" },
+		"title": { "type": "string", "default": "" },
+		"id": { "type": "string", "default": "" },
+		"decimals": { "type": "string", "default": "2" },
+		"currency": { "type": "string", "default": "$" }
+	},
+	"supports": {
+		"html": false,
+		"align": false,
+		"typography": { "fontSize": true },
+		"color": { "text": true, "background": true },
+		"spacing": { "margin": true, "padding": true }
+	},
+	"editorScript": "file:./index.js"
+}

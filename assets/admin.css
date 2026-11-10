@@ -1,0 +1,28 @@
+/* GunsNPrices Firearm Specs: admin styles. */
+
+#woocommerce-product-data ul.wc-tabs li.gnpfs_specs_options a::before {
+	content: "\f230"; /* dashicons-location-alt (crosshair-like) */
+}
+
+#gnpfs_specs_data .gnpfs-fill-row .description {
+	display: block;
+	margin: 6px 0 0;
+	clear: both;
+}
+
+#gnpfs_specs_data .gnpfs-fill-status {
+	margin-left: 8px;
+}
+
+.gnpfs-tools .gnpfs-results,
+.gnpfs-tools .gnpfs-calibers {
+	margin-top: 8px;
+}
+
+.gnpfs-tools details {
+	margin: 8px 0 16px;
+}
+
+.gnpfs-tools summary {
+	cursor: pointer;
+}
