@@ -49,6 +49,10 @@ Measured on 63,755 gun and ammo listings from 40+ US stores. When a title contai
 
 Titles in English from US retailers work best.
 
+= Third-party code and data =
+
+The plugin bundles the gunsnprices PHP library 0.1.0 (https://github.com/gunsnprices/gunsnprices-php, MIT License) in `vendor-prefixed/gunsnprices/`, with its namespace renamed so it cannot clash with other plugins. Its model dictionaries and caliber list (`vendor-prefixed/gunsnprices/data/models.json` and `calibers.json`) are © GunsNPrices (https://gunsnprices.com) under the Creative Commons Attribution 4.0 license, which is compatible with the GPL. The source of the block's editor script is the shipped `blocks/cost-per-round/index.js`; there is no build step.
+
 == Installation ==
 
 1. Install the plugin from Plugins → Add New, or upload the zip, and activate it.
@@ -93,9 +97,14 @@ Developers can use the filters `gnpfs_parsed_specs`, `gnpfs_product_hints`, `gnp
 
 If you turn it on, a "Specs: GunsNPrices" row with a link to gunsnprices.com is added under the specs table on product pages. It is off by default and nothing depends on it.
 
-== Third-party code and data ==
+== Screenshots ==
 
-The plugin bundles the gunsnprices PHP library 0.1.0 (https://github.com/gunsnprices/gunsnprices-php, MIT License) in `vendor-prefixed/gunsnprices/`, with its namespace renamed so it cannot clash with other plugins. Its model dictionaries and caliber list (`vendor-prefixed/gunsnprices/data/models.json` and `calibers.json`) are © GunsNPrices (https://gunsnprices.com) under the Creative Commons Attribution 4.0 license, which is compatible with the GPL. The source of the block's editor script is the shipped `blocks/cost-per-round/index.js`; there is no build step.
+1. The Firearm & ammo specs tab on the product screen, after "Fill from title".
+2. An ammo product page: cost per round next to the price, specs in the Additional information tab.
+3. Settings → Firearm Specs, with "Fill specs now" for the whole catalog.
+4. Tools → Firearm Specs: product titles turned into a table of specs.
+5. The Cost per round block and its settings in the editor.
+6. Cost per round in the shop list.
 
 == Changelog ==
 

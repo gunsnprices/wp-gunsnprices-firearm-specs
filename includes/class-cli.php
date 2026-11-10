@@ -49,7 +49,7 @@ final class Cli {
 	 * @param array $assoc_args Options.
 	 */
 	public function parse( $args, $assoc_args ) {
-		$specs = Specs::parse(
+		$specs  = Specs::parse(
 			$args[0],
 			array(
 				'sku'   => isset( $assoc_args['sku'] ) ? $assoc_args['sku'] : '',

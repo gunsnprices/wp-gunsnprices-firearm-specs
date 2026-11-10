@@ -120,14 +120,54 @@ final class Settings {
 		add_settings_section( 'gnpfs_front', __( 'Store front', 'gunsnprices-firearm-specs' ), '__return_false', self::PAGE );
 		add_settings_section( 'gnpfs_data', __( 'Data', 'gunsnprices-firearm-specs' ), '__return_false', self::PAGE );
 
-		add_settings_field( 'autofill', __( 'New products', 'gunsnprices-firearm-specs' ), array( __CLASS__, 'field_checkbox' ), self::PAGE, 'gnpfs_wc', array( 'key' => 'autofill', 'label' => __( 'Fill empty specs from the title when a product is saved for the first time (admin, REST API, CSV import)', 'gunsnprices-firearm-specs' ) ) );
+		add_settings_field(
+			'autofill',
+			__( 'New products', 'gunsnprices-firearm-specs' ),
+			array( __CLASS__, 'field_checkbox' ),
+			self::PAGE,
+			'gnpfs_wc',
+			array(
+				'key'   => 'autofill',
+				'label' => __( 'Fill empty specs from the title when a product is saved for the first time (admin, REST API, CSV import)', 'gunsnprices-firearm-specs' ),
+			)
+		);
 		add_settings_field( 'sync_attributes', __( 'Product attributes', 'gunsnprices-firearm-specs' ), array( __CLASS__, 'field_sync' ), self::PAGE, 'gnpfs_wc' );
 
 		add_settings_field( 'cpr_display', __( 'Cost per round', 'gunsnprices-firearm-specs' ), array( __CLASS__, 'field_cpr' ), self::PAGE, 'gnpfs_front' );
-		add_settings_field( 'show_specs', __( 'Specs table', 'gunsnprices-firearm-specs' ), array( __CLASS__, 'field_checkbox' ), self::PAGE, 'gnpfs_front', array( 'key' => 'show_specs', 'label' => __( 'Show the specs in the "Additional information" tab of the product page', 'gunsnprices-firearm-specs' ) ) );
-		add_settings_field( 'credit', __( 'Credit link', 'gunsnprices-firearm-specs' ), array( __CLASS__, 'field_checkbox' ), self::PAGE, 'gnpfs_front', array( 'key' => 'credit', 'label' => __( 'Add a "Specs: GunsNPrices" link under the specs table (off by default)', 'gunsnprices-firearm-specs' ) ) );
+		add_settings_field(
+			'show_specs',
+			__( 'Specs table', 'gunsnprices-firearm-specs' ),
+			array( __CLASS__, 'field_checkbox' ),
+			self::PAGE,
+			'gnpfs_front',
+			array(
+				'key'   => 'show_specs',
+				'label' => __( 'Show the specs in the "Additional information" tab of the product page', 'gunsnprices-firearm-specs' ),
+			)
+		);
+		add_settings_field(
+			'credit',
+			__( 'Credit link', 'gunsnprices-firearm-specs' ),
+			array( __CLASS__, 'field_checkbox' ),
+			self::PAGE,
+			'gnpfs_front',
+			array(
+				'key'   => 'credit',
+				'label' => __( 'Add a "Specs: GunsNPrices" link under the specs table (off by default)', 'gunsnprices-firearm-specs' ),
+			)
+		);
 
-		add_settings_field( 'delete_data', __( 'Uninstall', 'gunsnprices-firearm-specs' ), array( __CLASS__, 'field_checkbox' ), self::PAGE, 'gnpfs_data', array( 'key' => 'delete_data', 'label' => __( 'Delete the specs saved on products when the plugin is deleted (attributes and their terms are kept)', 'gunsnprices-firearm-specs' ) ) );
+		add_settings_field(
+			'delete_data',
+			__( 'Uninstall', 'gunsnprices-firearm-specs' ),
+			array( __CLASS__, 'field_checkbox' ),
+			self::PAGE,
+			'gnpfs_data',
+			array(
+				'key'   => 'delete_data',
+				'label' => __( 'Delete the specs saved on products when the plugin is deleted (attributes and their terms are kept)', 'gunsnprices-firearm-specs' ),
+			)
+		);
 	}
 
 	/**

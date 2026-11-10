@@ -1,7 +1,7 @@
 /* GunsNPrices Firearm Specs: admin styles. */
 
 #woocommerce-product-data ul.wc-tabs li.gnpfs_specs_options a::before {
-	content: "\f230"; /* dashicons-location-alt (crosshair-like) */
+	content: "\f481"; /* dashicons-clipboard */
 }
 
 #gnpfs_specs_data .gnpfs-fill-row .description {
